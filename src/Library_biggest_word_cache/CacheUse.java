@@ -2,6 +2,7 @@ package Library_biggest_word_cache;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -18,7 +19,10 @@ public class CacheUse {
         String shantaram = "Шантарам (англ. Shantaram, маратх. शांताराम, «мирный человек») — роман австралийского писателя Грегори Дэвида Робертса. Основой для книги послужили события собственной жизни автора. Основное действие романа разворачивается в Индии, в Бомбее (Мумбаи) в 1980-х годах. ";
         String sherlok = "Ше́рлок — английское имя, фамилия и топоним. Может обозначать:";
 */
+        HashMap<String, String> biggestWordsCache = new HashMap<>();
+
         Library fictionBooks = new Library();
+
 
         Book book1 = new Book();
         book1.bookName = "harry_potter";
@@ -32,7 +36,30 @@ public class CacheUse {
         fictionBooks.library.put(book1.bookName, book1.bookText);
         fictionBooks.library.put(book2.bookName, book2.bookText);
 
+        String bookName = "";
+        while (bookName != "exit") {
+            System.out.println("Enter book name to find biggest word.");
+            Scanner scanner = new Scanner(System.in);
+            bookName = scanner.nextLine();
 
+            if (biggestWordsCache.containsKey(bookName)) {
+
+                System.out.println(bookName + "'s biggest word is: " + biggestWordsCache.get(bookName));
+                System.out.println("Took from cache.");
+            } else {
+                String[] bookSplit = fictionBooks.library.get(bookName).split("\\s");
+                String biggestWord = "";
+
+                for (int i = 0; i < bookSplit.length; i++) {
+                    if (bookSplit[i].length() > biggestWord.length()) {
+                        biggestWord = bookSplit[i];
+                    }
+                    biggestWordsCache.put(bookName, biggestWord);
+                }
+                System.out.println(bookName + "'s biggest word is: " + biggestWord);
+                System.out.println("Took from library.");
+            }
+
+        }
     }
-
 }
