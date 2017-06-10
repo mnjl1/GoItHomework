@@ -26,16 +26,15 @@ public class DeveloperDAO {
 
     public void  creatNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        FileWriter fileWriter = new FileWriter("developer_hw_04_01/Developers.txt");
+        FileWriter fileWriter = new FileWriter("Developers.txt");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter ID");
         int id = scanner.nextInt();
         developer.setId(id);
 
-
-
         String newDeveloperToString = "";
 
-        newDeveloperToString += developer.getId();
+        newDeveloperToString = developer.getId()+"/";
 
         fileWriter.write(newDeveloperToString);
 
@@ -43,7 +42,7 @@ public class DeveloperDAO {
 
     public void save() throws IOException {
 
-        FileWriter fileWriter = new FileWriter("developer_hw_04_01/Developers.txt");
+        FileWriter fileWriter = new FileWriter("Developers.txt");
         Developer developer = new Developer();
         Integer id = developer.getId();
         String firstName = developer.getFirstName();

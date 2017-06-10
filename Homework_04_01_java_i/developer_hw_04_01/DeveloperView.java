@@ -8,7 +8,8 @@ import java.util.Scanner;
  */
 public class DeveloperView {
     private DeveloperController controller;
-    private DeveloperDAO developerDAO;
+    DeveloperDAO developerDAO = new DeveloperDAO();
+
 
     public void starMenu() {
 
@@ -37,7 +38,7 @@ public class DeveloperView {
                 try {
                     developerDAO.creatNewDeveloper();
                 }catch (Exception e) {
-                    System.out.println("Something wrong whith file.");
+                    System.out.println("Something wrong with file.");
                     System.out.println(e);
                 }
 
