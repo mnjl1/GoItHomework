@@ -3,17 +3,15 @@ package developer_hw_04_01;
 import java.io.IOException;
 
 public class DeveloperController {
-    private DeveloperDAO developerDAO;
+     DeveloperDAO developerDAO = new DeveloperDAO();
 
     public Developer getById(Integer id){
 
         return developerDAO.getById(id);
 
     }
+public void  getDeveloperDAO() throws IOException {
 
-    public Developer saveNewDeveloper() throws IOException {
-
-        return null;
-
+         developerDAO.creatNewDeveloper();
     }
 }

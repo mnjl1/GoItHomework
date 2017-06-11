@@ -5,6 +5,5 @@ public class DeveloperApp {
 
         DeveloperView view = new DeveloperView();
         view.starMenu();
-       // view.getById(1);
     }
 }

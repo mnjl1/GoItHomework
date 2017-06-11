@@ -8,6 +8,39 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperDAO {
+    int number;
+    String text;
+
+    public int checkInteger() {
+        Scanner scanner = new Scanner(System.in);
+        boolean correctInt = false;
+        while (!correctInt) {
+            try {
+                number = Integer.parseInt(scanner.next());
+                correctInt = true;
+
+            }catch (Exception e){
+                System.out.println("Not integer.");
+            }
+        }
+        scanner.close();
+        return number;
+    }
+
+    public String checkText() {
+        Scanner scanner = new Scanner(System.in);
+        boolean correctText = false;
+        while (!correctText){
+            try {
+                text = scanner.nextLine();
+                correctText = true;
+            }catch (Exception e) {
+                System.out.println("Not a string!");
+            }
+        }
+        scanner.close();
+        return text;
+    }
 
 
     public Developer getById(Integer id) {
@@ -26,17 +59,24 @@ public class DeveloperDAO {
 
     public void  creatNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        FileWriter fileWriter = new FileWriter("Developers.txt");
-        Scanner scanner = new Scanner(System.in);
+
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt");
+
         System.out.println("Enter ID");
-        int id = scanner.nextInt();
+        int id = checkInteger();
         developer.setId(id);
+
+        System.out.println("Enter first Name: ");
+        String firstName = checkText();
+        developer.setFirstName(firstName);
+
 
         String newDeveloperToString = "";
 
-        newDeveloperToString = developer.getId()+"/";
+        newDeveloperToString += id+ ", " +firstName; //developer.getId()+"/";
 
         fileWriter.write(newDeveloperToString);
+        fileWriter.close();
 
     }
 

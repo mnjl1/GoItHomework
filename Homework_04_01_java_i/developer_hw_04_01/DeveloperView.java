@@ -7,8 +7,7 @@ import java.util.Scanner;
  * Created by Manager on 10.06.17.
  */
 public class DeveloperView {
-    private DeveloperController controller;
-    DeveloperDAO developerDAO = new DeveloperDAO();
+    private DeveloperController controller = new DeveloperController();
 
 
     public void starMenu() {
@@ -35,8 +34,11 @@ public class DeveloperView {
 
         switch (choice) {
             case 1 : {
+                DeveloperView developerView =new DeveloperView() ;
                 try {
-                    developerDAO.creatNewDeveloper();
+                    developerView.controller.getDeveloperDAO();
+
+
                 }catch (Exception e) {
                     System.out.println("Something wrong with file.");
                     System.out.println(e);
