@@ -12,6 +12,7 @@ public class DeveloperController {
     }
 public void  getDeveloperDAO() throws IOException {
 
-         developerDAO.creatNewDeveloper();
+         developerDAO.createNewDeveloper();
     }
+
 }

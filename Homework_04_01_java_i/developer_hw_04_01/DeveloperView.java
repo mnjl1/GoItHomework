@@ -14,45 +14,36 @@ public class DeveloperView {
 
         System.out.println("Hello!");
         System.out.println("Make your choice:");
+        while (true) {
+            System.out.println("1. Insert new developer.");
+            System.out.println("2. Find developer by ID.");
+            System.out.println("3. Print.");
+            System.out.println("4. Exit APP");
 
-        System.out.println("1. Insert new developer.");
-        System.out.println("2. Find developer by ID.");
-        System.out.println("3. Print.");
 
-        Scanner scanner = new Scanner(System.in);
-        int choice = 0;
-        boolean correctChoice = false;
-        while (!correctChoice) {
-            try {
-                choice = Integer.parseInt(scanner.next());
-                correctChoice =true;
-                } catch (Exception e) {
-                System.out.println("Not integer.");
-                System.out.println(e);
-            }
-        }
-
-        switch (choice) {
-            case 1 : {
-                DeveloperView developerView =new DeveloperView() ;
+            Scanner scanner = new Scanner(System.in);
+            int choice = 0;
+            boolean correctChoice = false;
+            while (!correctChoice) {
                 try {
-                    developerView.controller.getDeveloperDAO();
-
-
-                }catch (Exception e) {
-                    System.out.println("Something wrong with file.");
+                    choice = Integer.parseInt(scanner.next());
+                    correctChoice = true;
+                } catch (Exception e) {
+                    System.out.println("Not integer.");
                     System.out.println(e);
                 }
-
+            }
+            switch (choice) {
+                case 1: {
+                    DeveloperView developerView = new DeveloperView();
+                    try {
+                        developerView.controller.getDeveloperDAO();
+                    } catch (Exception e) {
+                        System.out.println("Something wrong with file.");
+                        System.out.println(e);
+                    }
+                }
             }
         }
-
-
     }
-
-    void getById(Integer id) {
-       Developer developer = controller.getById(id);
-        System.out.println(developer);
-    }
-
 }

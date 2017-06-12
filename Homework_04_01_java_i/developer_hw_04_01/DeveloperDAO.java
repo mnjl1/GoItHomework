@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperDAO {
+    Collection<Developer> developersList = new ArrayList<>();
+
     int number;
     String text;
+    Scanner scanner = new Scanner(System.in);
 
     public int checkInteger() {
-        Scanner scanner = new Scanner(System.in);
         boolean correctInt = false;
         while (!correctInt) {
             try {
@@ -23,12 +25,12 @@ public class DeveloperDAO {
                 System.out.println("Not integer.");
             }
         }
-        scanner.close();
+
         return number;
     }
 
     public String checkText() {
-        Scanner scanner = new Scanner(System.in);
+
         boolean correctText = false;
         while (!correctText){
             try {
@@ -38,7 +40,7 @@ public class DeveloperDAO {
                 System.out.println("Not a string!");
             }
         }
-        scanner.close();
+
         return text;
     }
 
@@ -55,46 +57,48 @@ public class DeveloperDAO {
         //get all developers from file
      return developers;
     }
+
     //my code
 
-    public void  creatNewDeveloper() throws IOException {
+    public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
-
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt");
+        FileWriter fileWriter = new FileWriter("C:\\Documents and Settings\\Manager\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt");
 
         System.out.println("Enter ID");
         int id = checkInteger();
+        scanner.nextLine();
         developer.setId(id);
 
         System.out.println("Enter first Name: ");
-        String firstName = checkText();
+        String firstName = scanner.nextLine();
         developer.setFirstName(firstName);
 
+        System.out.println("Enter last Name: ");
+        String lastName = scanner.nextLine();
+        developer.setLastName(lastName);
+
+
+        System.out.println("Enter specialty: ");
+        String specialty = scanner.nextLine();
+        developer.setSpecialty(specialty);
+
+        System.out.println("Enter experience: ");
+        int experience = checkInteger();
+        developer.setSpecialty(specialty);
+
+        System.out.println("Enter salary:  ");
+        double salary = scanner.nextDouble();
+        developer.setSalary(salary);
+
+        developersList.add(developer);
+        System.out.println(developersList);
 
         String newDeveloperToString = "";
 
-        newDeveloperToString += id+ ", " +firstName; //developer.getId()+"/";
+        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n";
 
         fileWriter.write(newDeveloperToString);
         fileWriter.close();
-
-    }
-
-    public void save() throws IOException {
-
-        FileWriter fileWriter = new FileWriter("Developers.txt");
-        Developer developer = new Developer();
-        Integer id = developer.getId();
-        String firstName = developer.getFirstName();
-        String lastName = developer.getLastName();
-        String specialty = developer.getSpecialty();
-        Integer experience = developer.getExperience();
-        Double salary = developer.getSalary();
-
-        String developerToStringRepresentation ="";
-        developerToStringRepresentation += id +", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"/";
-        fileWriter.write(developerToStringRepresentation);
-
     }
 
     public void update() {
@@ -106,5 +110,7 @@ public class DeveloperDAO {
     public void delete(Integer id) {
 
     }
+
+
 
 }
