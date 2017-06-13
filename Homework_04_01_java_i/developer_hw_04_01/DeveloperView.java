@@ -10,6 +10,7 @@ public class DeveloperView {
     private DeveloperController controller = new DeveloperController();
 
 
+
     public void starMenu() {
 
         System.out.println("Hello!");
@@ -17,8 +18,10 @@ public class DeveloperView {
         while (true) {
             System.out.println("1. Insert new developer.");
             System.out.println("2. Find developer by ID.");
-            System.out.println("3. Print.");
-            System.out.println("4. Exit APP");
+            System.out.println("3. Print developers list.");
+            System.out.println("4. Print developers list.");
+            System.out.println("5. Delete developer by ID");
+            System.out.println("6. Exit APP");
 
 
             Scanner scanner = new Scanner(System.in);
@@ -36,15 +39,30 @@ public class DeveloperView {
             switch (choice) {
                 case 1: {
                     DeveloperView developerView = new DeveloperView();
-                    while(true) {
-                        try {
-                            developerView.controller.getDeveloperDAO();
+
+                    try {
+                            controller.getDeveloperDAO();
                         } catch (Exception e) {
                             System.out.println("Something wrong with file.");
                             System.out.println(e);
-                        }
                     }
+                    break;
                 }
+                case 2: {
+
+                break;
+            }
+                case 3: {
+                    //DeveloperView developerView = new DeveloperView();
+
+                    controller.getDevelopersList();
+                    break;
+                }
+
+                default:
+                    System.out.println("Wrong choice! Try again, please.");
+
+
             }
         }
     }
