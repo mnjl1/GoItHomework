@@ -36,11 +36,13 @@ public class DeveloperView {
             switch (choice) {
                 case 1: {
                     DeveloperView developerView = new DeveloperView();
-                    try {
-                        developerView.controller.getDeveloperDAO();
-                    } catch (Exception e) {
-                        System.out.println("Something wrong with file.");
-                        System.out.println(e);
+                    while(true) {
+                        try {
+                            developerView.controller.getDeveloperDAO();
+                        } catch (Exception e) {
+                            System.out.println("Something wrong with file.");
+                            System.out.println(e);
+                        }
                     }
                 }
             }

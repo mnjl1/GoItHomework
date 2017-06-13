@@ -1,7 +1,6 @@
 package developer_hw_04_01;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -95,10 +94,11 @@ public class DeveloperDAO {
 
         String newDeveloperToString = "";
 
-        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n";
+        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +System.getProperty("line.separator");
 
         fileWriter.write(newDeveloperToString);
         fileWriter.close();
+
     }
 
     public void update() {
