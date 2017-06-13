@@ -4,9 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class DeveloperDAO {
-    //Collection<Developer> developersList = new ArrayList<>();
-    Map<Integer, Developer> developerMap = new TreeMap<>();
-
+     Map<Integer, Developer> developerMap = new TreeMap<>();
 
     int number;
     String text;
@@ -21,9 +19,8 @@ public class DeveloperDAO {
 
             }catch (Exception e){
                 System.out.println("Not integer.");
-            }
+          }
         }
-
         return number;
     }
 
@@ -42,18 +39,15 @@ public class DeveloperDAO {
         return text;
     }
 
-
-
-    public Map<Integer, Developer> getAllDevelopers(){
-
-        return developerMap;
+    public void getAllDevelopers(){
+        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()) {
+            System.out.println("ID: " +entry.getKey() +". " +" Developer: " +entry.getValue());
+        }
     }
-
-    //my code**********************
 
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        FileWriter fileWriter = new FileWriter("C:\\Documents and Settings\\Manager\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt", true);
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt", true);
 
         System.out.println("Enter ID");
         int id = checkInteger();
@@ -81,8 +75,6 @@ public class DeveloperDAO {
         double salary = scanner.nextDouble();
         developer.setSalary(salary);
 
-//        developersList.add(developer);
-//        System.out.println(developersList);
 
         developerMap.put(id, developer);
         System.out.println(developerMap);
@@ -95,6 +87,37 @@ public class DeveloperDAO {
         fileWriter.close();
 
     }
+
+    public void removeDeveloper() {
+        System.out.println("Enter developer ID to remove.");
+        int id = checkInteger();
+
+        if (developerMap.containsKey(id)) {
+            developerMap.remove(id);
+        }
+        else System.out.println("No developer found");
+
+
+
+    }
+
+    //updating text file after editing/removing developer
+    public void update() throws IOException {
+        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt", true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        fileWriter.write("");
+        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
+              bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
+
+        }
+        bufferedWriter.flush();
+        bufferedWriter.close();
+        fileWriter.close();
+
+
+    }
+
+
 
 
 }

@@ -5,14 +5,23 @@ import java.io.IOException;
 public class DeveloperController {
      DeveloperDAO developerDAO = new DeveloperDAO();
 
-
 public void  getDeveloperDAO() throws IOException {
 
          developerDAO.createNewDeveloper();
     }
 
     public void  getDevelopersList() {
-        System.out.println(developerDAO.getAllDevelopers());
+        developerDAO.getAllDevelopers();
+    }
+
+    public void getDeveloperToRemoveFromList() {
+        developerDAO.removeDeveloper();
+    }
+
+    public void updateFile() throws IOException {
+        developerDAO.update();
     }
 
 }
+
+

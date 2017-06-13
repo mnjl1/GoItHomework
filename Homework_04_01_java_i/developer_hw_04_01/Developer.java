@@ -70,4 +70,9 @@ public class Developer {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return this.getId() +", " +this.getFirstName() +", " +this.getFirstName() +", "+this.getSpecialty() +", " +this.getExperience() +", " +this.getSalary();
+    }
 }

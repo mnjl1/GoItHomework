@@ -1,2 +1,5 @@
 1, d, d, j, 1, 10.0
-2, f, f, c, 2, 200.0
+1, d, d, j, 1, 10.0
+1, dmytro, manzhula, java, 1, 10.0
+2, artur, vart, c++, 2, 20.0
+1	1, dmytro, dmytro, java, 0, 10.0

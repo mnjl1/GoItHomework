@@ -16,13 +16,11 @@ public class DeveloperView {
         System.out.println("Hello!");
         System.out.println("Make your choice:");
         while (true) {
-            System.out.println("1. Insert new developer.");
-            System.out.println("2. Find developer by ID.");
+            System.out.println("1. Create new developer.");
+            System.out.println("2. Edit developer by ID");
             System.out.println("3. Print developers list.");
-            System.out.println("4. Print developers list.");
-            System.out.println("5. Delete developer by ID");
-            System.out.println("6. Exit APP");
-
+            System.out.println("4. Remove developer by ID.");
+            System.out.println("5. Exit APP");
 
             Scanner scanner = new Scanner(System.in);
             int choice = 0;
@@ -38,7 +36,6 @@ public class DeveloperView {
             }
             switch (choice) {
                 case 1: {
-                    DeveloperView developerView = new DeveloperView();
 
                     try {
                             controller.getDeveloperDAO();
@@ -53,15 +50,30 @@ public class DeveloperView {
                 break;
             }
                 case 3: {
-                    //DeveloperView developerView = new DeveloperView();
 
                     controller.getDevelopersList();
                     break;
                 }
 
+                case 4: {
+                    controller.getDeveloperToRemoveFromList();
+                    try {
+                        controller.updateFile();
+                    }catch (IOException e) {
+                        System.out.println("Problem with updating file.");
+                        System.out.println(e);
+                    }
+
+                    break;
+                }
+
+                case 5: {
+                    System.out.println("Exiting ....");
+                    System.exit(0);
+                }
+
                 default:
                     System.out.println("Wrong choice! Try again, please.");
-
 
             }
         }
