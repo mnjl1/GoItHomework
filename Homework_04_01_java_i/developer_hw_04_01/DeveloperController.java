@@ -22,6 +22,10 @@ public void  getDeveloperDAO() throws IOException {
         developerDAO.update();
     }
 
+    public void readingDevFile() throws Exception {
+        developerDAO.readDevelopersFile();
+    }
+
 }
 
 

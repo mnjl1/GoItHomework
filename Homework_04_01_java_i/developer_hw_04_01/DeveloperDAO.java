@@ -3,12 +3,15 @@ package developer_hw_04_01;
 import java.io.*;
 import java.util.*;
 
+
 public class DeveloperDAO {
      Map<Integer, Developer> developerMap = new TreeMap<>();
 
     int number;
     String text;
     Scanner scanner = new Scanner(System.in);
+
+    public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Documents and Settings\\Manager\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
 
     public int checkInteger() {
         boolean correctInt = false;
@@ -47,7 +50,7 @@ public class DeveloperDAO {
 
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt", true);
+        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
         System.out.println("Enter ID");
         int id = checkInteger();
@@ -77,7 +80,6 @@ public class DeveloperDAO {
 
 
         developerMap.put(id, developer);
-        System.out.println(developerMap);
 
         String newDeveloperToString = "";
 
@@ -96,28 +98,33 @@ public class DeveloperDAO {
             developerMap.remove(id);
         }
         else System.out.println("No developer found");
-
-
-
     }
 
-    //updating text file after editing/removing developer
+    //updating text file after removing developer
     public void update() throws IOException {
-        FileWriter fileWriter = new FileWriter("C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt", true);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
         fileWriter.write("");
+        fileWriter.flush();
+        fileWriter.close();
+
+        FileWriter fileWriter1 = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter1);
+
         for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
               bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
-
         }
         bufferedWriter.flush();
         bufferedWriter.close();
         fileWriter.close();
-
-
     }
 
+    public void readDevelopersFile() throws Exception {
+        FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
+        int i;
 
+            while ((i = fileReader.read())!= -1) {
+                System.out.print((char)i);
+            }
 
-
+    }
 }

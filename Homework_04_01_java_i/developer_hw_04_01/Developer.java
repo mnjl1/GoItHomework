@@ -1,7 +1,5 @@
 package developer_hw_04_01;
 
-import java.util.ArrayList;
-
 public class Developer {
     private int id;
     private String firstName;
@@ -73,6 +71,8 @@ public class Developer {
 
     @Override
     public String toString() {
-        return this.getId() +", " +this.getFirstName() +", " +this.getFirstName() +", "+this.getSpecialty() +", " +this.getExperience() +", " +this.getSalary();
+        return this.getId() +", " +this.getFirstName() +", " +this.getLastName() +", "+this.getSpecialty() +", " +this.getExperience() +", " +this.getSalary();
     }
+
+
 }

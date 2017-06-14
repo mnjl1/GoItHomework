@@ -3,9 +3,6 @@ package developer_hw_04_01;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * Created by Manager on 10.06.17.
- */
 public class DeveloperView {
     private DeveloperController controller = new DeveloperController();
 
@@ -51,7 +48,15 @@ public class DeveloperView {
             }
                 case 3: {
 
-                    controller.getDevelopersList();
+                    //controller.getDevelopersList(); // reading list from collection
+
+                    try {
+                        controller.readingDevFile();  //reading list from file
+                    }catch (Exception e) {
+                        System.out.println("Something happened...");
+                        System.out.println(e);
+                    }
+
                     break;
                 }
 
