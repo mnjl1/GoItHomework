@@ -48,14 +48,17 @@ public class DeveloperView {
             }
                 case 3: {
 
-                    //controller.getDevelopersList(); // reading list from collection
+                    controller.getDevelopersList(); // reading list from collection
 
+                    /*
                     try {
+
                         controller.readingDevFile();  //reading list from file
                     }catch (Exception e) {
                         System.out.println("Something happened...");
                         System.out.println(e);
                     }
+                    */
 
                     break;
                 }
