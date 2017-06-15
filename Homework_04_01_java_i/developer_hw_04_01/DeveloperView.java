@@ -48,31 +48,11 @@ public class DeveloperView {
                     }catch (Exception e) {
                         System.out.println(e);
                     }
-
-                    //controller.getDevelopersList(); // reading list from collection
-
-                    /*
-                    try {
-
-                        controller.readingDevFile();  //reading list from file
-                    }catch (Exception e) {
-                        System.out.println("Something happened...");
-                        System.out.println(e);
-                    }
-                    */
-
                     break;
                 }
 
                 case 3: {
                     controller.getDeveloperToRemoveFromList();
-                    try {
-                        controller.updateFile();
-                    }catch (IOException e) {
-                        System.out.println("Problem with updating file.");
-                        System.out.println(e);
-                    }
-
                     break;
                 }
 
@@ -83,7 +63,6 @@ public class DeveloperView {
 
                 default:
                     System.out.println("Wrong choice! Try again, please.");
-
             }
         }
     }

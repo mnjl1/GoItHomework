@@ -15,12 +15,20 @@ public void  getDeveloperDAO() throws IOException {
     }
 
     public void getDeveloperToRemoveFromList() {
+
+    try {
         developerDAO.removeDeveloper();
+    }catch (Exception e) {
+        System.out.println(e);
     }
 
+    }
+
+    /*
     public void updateFile() throws IOException {
         developerDAO.update();
     }
+    */
 
     public void readingDevFile() throws Exception {
         developerDAO.readDevelopersFile();

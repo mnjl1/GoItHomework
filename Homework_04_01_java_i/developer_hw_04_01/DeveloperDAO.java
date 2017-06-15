@@ -5,6 +5,7 @@ import java.util.*;
 
 
 public class DeveloperDAO {
+    Developer developer = new Developer();
      Map<Integer, Developer> developerMap = new TreeMap<>();
 
     int number;
@@ -13,6 +14,7 @@ public class DeveloperDAO {
 
     public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Documents and Settings\\Manager\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
 
+    //method for inserting any integer
     public int checkInteger() {
         boolean correctInt = false;
         while (!correctInt) {
@@ -49,7 +51,7 @@ public class DeveloperDAO {
     }
 
     public void createNewDeveloper() throws IOException {
-        Developer developer = new Developer();
+
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
         System.out.println("Enter ID");
@@ -65,7 +67,6 @@ public class DeveloperDAO {
         String lastName = scanner.nextLine();
         developer.setLastName(lastName);
 
-
         System.out.println("Enter specialty: ");
         String specialty = scanner.nextLine();
         developer.setSpecialty(specialty);
@@ -80,24 +81,64 @@ public class DeveloperDAO {
 
         String newDeveloperToString = "";
 
-        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n" ;
+        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n";
 
         fileWriter.write(newDeveloperToString);
         fileWriter.close();
 
     }
+//remove developer from file
+    public void removeDeveloper() throws Exception {
 
-    public void removeDeveloper() {
-        System.out.println("Enter developer ID to remove.");
-        int id = checkInteger();
+        //copy developers from file to collection
+        FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        int id;
+        String devLine;
+        while ((devLine = bufferedReader.readLine()) !=null && devLine.isEmpty()) {
+            String[] devLineSplit = devLine.split(",\\s");
+           id = Integer.parseInt(devLineSplit[0]);
+           developer.setId(id);
+           developer.setFirstName(devLineSplit[1]);
+           developer.setLastName(devLineSplit[2]);
+           developer.setSpecialty(devLineSplit[3]);
+           int experience = Integer.parseInt(devLineSplit[4]);
+           developer.setExperience(experience);
+           double salary = Double.parseDouble(devLineSplit[5]);
+           developer.setSalary(salary);
 
-        if (developerMap.containsKey(id)) {
-            developerMap.remove(id);
+           developerMap.put(id, developer);
+
         }
-        else System.out.println("No developer found");
+        System.out.println(developerMap);
+         //
+
+//        System.out.println("Enter developer ID to remove.");
+//        int id = checkInteger();
+
+        //remove developer from collection by ID
+//        if (developerMap.containsKey(id)) {
+//            developerMap.remove(id);
+//        }
+//        else System.out.println("No developer found");
+//
+//        //copy from collection to file
+//        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
+//        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+//        fileWriter.write("");
+//        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
+//            bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
+//        }
+//        bufferedWriter.flush();
+//        bufferedWriter.close();
+//        fileWriter.close();
+
+        //developerMap.clear();
+
     }
 
-    //updating text file after removing developer
+/*candidate to be deleted
+
     public void update() throws IOException {
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
         fileWriter.write("");
@@ -114,6 +155,7 @@ public class DeveloperDAO {
         bufferedWriter.close();
         fileWriter.close();
     }
+    */
 
     public void readDevelopersFile() throws Exception {
         FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);

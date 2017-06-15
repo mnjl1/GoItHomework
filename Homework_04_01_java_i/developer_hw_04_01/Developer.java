@@ -73,6 +73,4 @@ public class Developer {
     public String toString() {
         return this.getId() +", " +this.getFirstName() +", " +this.getLastName() +", "+this.getSpecialty() +", " +this.getExperience() +", " +this.getSalary();
     }
-
-
 }

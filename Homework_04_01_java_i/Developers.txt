@@ -1,4 +1,2 @@
-1, Dmytro, Manzhula, java, 1, 500.0
-2, Artur, Vartumian, c++, 2, 300.0
-3, Mykola, Zadubailo, python, 2, 30.0
-4, Yurij, Smirnov, java, 5, 500.0
+1, dd, mm, jj, 1, 200.0
+2, hh, mm, cc, 2, 200.03, ss, dd, pp, 3, 300.0
