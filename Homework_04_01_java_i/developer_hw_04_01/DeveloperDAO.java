@@ -78,9 +78,6 @@ public class DeveloperDAO {
         double salary = scanner.nextDouble();
         developer.setSalary(salary);
 
-
-        developerMap.put(id, developer);
-
         String newDeveloperToString = "";
 
         newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n" ;
@@ -120,11 +117,14 @@ public class DeveloperDAO {
 
     public void readDevelopersFile() throws Exception {
         FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
-        int i;
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            while ((i = fileReader.read())!= -1) {
-                System.out.print((char)i);
-            }
-
+        String devLine;
+        while ((devLine = bufferedReader.readLine()) !=null) {
+            System.out.println(devLine);
+        }
+        System.out.println();
+        bufferedReader.close();
+        fileReader.close();
     }
 }

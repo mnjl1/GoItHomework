@@ -14,10 +14,9 @@ public class DeveloperView {
         System.out.println("Make your choice:");
         while (true) {
             System.out.println("1. Create new developer.");
-            System.out.println("2. Edit developer by ID");
-            System.out.println("3. Print developers list.");
-            System.out.println("4. Remove developer by ID.");
-            System.out.println("5. Exit APP");
+            System.out.println("2. Print developers list.");
+            System.out.println("3. Remove developer by ID.");
+            System.out.println("4. Exit APP");
 
             Scanner scanner = new Scanner(System.in);
             int choice = 0;
@@ -42,13 +41,15 @@ public class DeveloperView {
                     }
                     break;
                 }
+
                 case 2: {
+                    try {
+                        controller.readingDevFile();
+                    }catch (Exception e) {
+                        System.out.println(e);
+                    }
 
-                break;
-            }
-                case 3: {
-
-                    controller.getDevelopersList(); // reading list from collection
+                    //controller.getDevelopersList(); // reading list from collection
 
                     /*
                     try {
@@ -63,7 +64,7 @@ public class DeveloperView {
                     break;
                 }
 
-                case 4: {
+                case 3: {
                     controller.getDeveloperToRemoveFromList();
                     try {
                         controller.updateFile();
@@ -75,7 +76,7 @@ public class DeveloperView {
                     break;
                 }
 
-                case 5: {
+                case 4: {
                     System.out.println("Exiting ....");
                     System.exit(0);
                 }
