@@ -3,12 +3,10 @@ package developer_hw_04_01;
 import java.io.*;
 import java.util.*;
 
-
 public class DeveloperDAO {
 
      Map<Integer, Developer> developerMap = new HashMap<>();
      List<Developer> developerList = new ArrayList<>();
-
 
     int number;
     String text;
@@ -29,21 +27,6 @@ public class DeveloperDAO {
           }
         }
         return number;
-    }
-
-    public String checkText() {
-
-        boolean correctText = false;
-        while (!correctText){
-            try {
-                text = scanner.nextLine();
-                correctText = true;
-            }catch (Exception e) {
-                System.out.println("Not a string!");
-            }
-        }
-
-        return text;
     }
 
     public void getAllDevelopers(){
@@ -91,14 +74,11 @@ public class DeveloperDAO {
     }
 //remove developer from file
     public void removeDeveloper() throws Exception {
-
         //copy developers from file to collection
-
         try {
             //FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
             BufferedReader bufferedReader =
                     new BufferedReader((new InputStreamReader(new FileInputStream(PATH_TO_DEVELOPERS_LIST))));
-
             String devLine;
             while ((devLine = bufferedReader.readLine()) != null) {
                 Developer developer = new Developer();
@@ -113,52 +93,51 @@ public class DeveloperDAO {
                 double salary = Double.parseDouble(devLineSplit[5]);
                 developer.setSalary(salary);
 
-
-                //developerMap.put(id, developer);
-               developerMap.put(id, developer);
+                developerMap.put(id, developer);
             }
         }catch (IOException e){
             System.out.println(e);
         }
 
-        System.out.println(developerMap);
-
-
-
         System.out.println("Enter developer ID to remove.");
         int id = checkInteger();
-
         //remove developer from collection by ID
         if (developerMap.containsKey(id)) {
             developerMap.remove(id);
+            System.out.println("Developer is deleted.");
         }
         else System.out.println("No developer found");
-
         //copy from collection to file
-        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        fileWriter.write("");
-        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
-            bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
+        try {
+            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            fileWriter.write("");
+            for (Map.Entry<Integer, Developer> entry : developerMap.entrySet()) {
+                bufferedWriter.write(entry.getKey() + "\t" + entry.getValue());
+            }
+        }catch (Exception e){
+            System.out.println("Cannot record file.");
+            System.out.println(e);
         }
-        bufferedWriter.flush();
-        bufferedWriter.close();
-        fileWriter.close();
-
+        //clearing map after recording developers to file
         developerMap.clear();
-
     }
 
     public void readDevelopersFile() throws Exception {
-        FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        String devLine;
-        while ((devLine = bufferedReader.readLine()) !=null) {
-            System.out.println(devLine);
+        try {
+            FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String devLine;
+            while ((devLine = bufferedReader.readLine()) != null) {
+                System.out.println(devLine);
+            }
+            System.out.println();
+        }catch (Exception e){
+            System.out.println("Can not read file.");
+            System.out.println(e);
         }
-        System.out.println();
-        bufferedReader.close();
-        fileReader.close();
+
     }
 }

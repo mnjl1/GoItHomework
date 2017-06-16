@@ -1,15 +1,11 @@
 package developer_hw_04_01;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class DeveloperView {
     private DeveloperController controller = new DeveloperController();
 
-
-
     public void starMenu() {
-
         System.out.println("Hello!");
         System.out.println("Make your choice:");
         while (true) {

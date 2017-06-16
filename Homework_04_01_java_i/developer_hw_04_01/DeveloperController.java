@@ -10,10 +10,6 @@ public void  getDeveloperDAO() throws IOException {
          developerDAO.createNewDeveloper();
     }
 
-    public void  getDevelopersList() {
-        developerDAO.getAllDevelopers();
-    }
-
     public void getDeveloperToRemoveFromList() {
 
     try {
@@ -23,12 +19,6 @@ public void  getDeveloperDAO() throws IOException {
     }
 
     }
-
-    /*
-    public void updateFile() throws IOException {
-        developerDAO.update();
-    }
-    */
 
     public void readingDevFile() throws Exception {
         developerDAO.readDevelopersFile();
