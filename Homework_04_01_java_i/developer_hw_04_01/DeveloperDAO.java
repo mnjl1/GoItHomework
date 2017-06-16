@@ -5,8 +5,10 @@ import java.util.*;
 
 
 public class DeveloperDAO {
-    Developer developer = new Developer();
-     Map<Integer, Developer> developerMap = new TreeMap<>();
+
+     Map<Integer, Developer> developerMap = new HashMap<>();
+     List<Developer> developerList = new ArrayList<>();
+
 
     int number;
     String text;
@@ -51,7 +53,7 @@ public class DeveloperDAO {
     }
 
     public void createNewDeveloper() throws IOException {
-
+        Developer developer = new Developer();
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
         System.out.println("Enter ID");
@@ -91,71 +93,61 @@ public class DeveloperDAO {
     public void removeDeveloper() throws Exception {
 
         //copy developers from file to collection
-        FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        int id;
-        String devLine;
-        while ((devLine = bufferedReader.readLine()) !=null && devLine.isEmpty()) {
-            String[] devLineSplit = devLine.split(",\\s");
-           id = Integer.parseInt(devLineSplit[0]);
-           developer.setId(id);
-           developer.setFirstName(devLineSplit[1]);
-           developer.setLastName(devLineSplit[2]);
-           developer.setSpecialty(devLineSplit[3]);
-           int experience = Integer.parseInt(devLineSplit[4]);
-           developer.setExperience(experience);
-           double salary = Double.parseDouble(devLineSplit[5]);
-           developer.setSalary(salary);
 
-           developerMap.put(id, developer);
+        try {
+            //FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
+            BufferedReader bufferedReader =
+                    new BufferedReader((new InputStreamReader(new FileInputStream(PATH_TO_DEVELOPERS_LIST))));
 
+            String devLine;
+            while ((devLine = bufferedReader.readLine()) != null) {
+                Developer developer = new Developer();
+                String[] devLineSplit = devLine.split(",\\s");
+                int id = Integer.parseInt(devLineSplit[0]);
+                developer.setId(id);
+                developer.setFirstName(devLineSplit[1]);
+                developer.setLastName(devLineSplit[2]);
+                developer.setSpecialty(devLineSplit[3]);
+                int experience = Integer.parseInt(devLineSplit[4]);
+                developer.setExperience(experience);
+                double salary = Double.parseDouble(devLineSplit[5]);
+                developer.setSalary(salary);
+
+
+                //developerMap.put(id, developer);
+               developerMap.put(id, developer);
+            }
+        }catch (IOException e){
+            System.out.println(e);
         }
-        System.out.println(developerMap);
-         //
 
-//        System.out.println("Enter developer ID to remove.");
-//        int id = checkInteger();
+        System.out.println(developerMap);
+
+
+
+        System.out.println("Enter developer ID to remove.");
+        int id = checkInteger();
 
         //remove developer from collection by ID
-//        if (developerMap.containsKey(id)) {
-//            developerMap.remove(id);
-//        }
-//        else System.out.println("No developer found");
-//
-//        //copy from collection to file
-//        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
-//        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-//        fileWriter.write("");
-//        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
-//            bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
-//        }
-//        bufferedWriter.flush();
-//        bufferedWriter.close();
-//        fileWriter.close();
+        if (developerMap.containsKey(id)) {
+            developerMap.remove(id);
+        }
+        else System.out.println("No developer found");
 
-        //developerMap.clear();
-
-    }
-
-/*candidate to be deleted
-
-    public void update() throws IOException {
+        //copy from collection to file
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         fileWriter.write("");
-        fileWriter.flush();
-        fileWriter.close();
-
-        FileWriter fileWriter1 = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter1);
-
         for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()){
-              bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
+            bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
         }
         bufferedWriter.flush();
         bufferedWriter.close();
         fileWriter.close();
+
+        developerMap.clear();
+
     }
-    */
 
     public void readDevelopersFile() throws Exception {
         FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
