@@ -29,19 +29,12 @@ public class DeveloperDAO {
         return number;
     }
 
-    public void getAllDevelopers(){
-        for (Map.Entry<Integer, Developer> entry: developerMap.entrySet()) {
-            System.out.println("ID: " +entry.getKey() +". " +" Developer: " +entry.getValue());
-        }
-    }
-
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
         System.out.println("Enter ID");
         int id = checkInteger();
-        scanner.nextLine();
         developer.setId(id);
 
         System.out.println("Enter first Name: ");
@@ -76,7 +69,6 @@ public class DeveloperDAO {
     public void removeDeveloper() throws Exception {
         //copy developers from file to collection
         try {
-            //FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
             BufferedReader bufferedReader =
                     new BufferedReader((new InputStreamReader(new FileInputStream(PATH_TO_DEVELOPERS_LIST))));
             String devLine;
@@ -98,28 +90,32 @@ public class DeveloperDAO {
         }catch (IOException e){
             System.out.println(e);
         }
+        System.out.println(developerMap);
 
+        //remove developer from collection by ID
         System.out.println("Enter developer ID to remove.");
         int id = checkInteger();
-        //remove developer from collection by ID
+
         if (developerMap.containsKey(id)) {
             developerMap.remove(id);
             System.out.println("Developer is deleted.");
         }
         else System.out.println("No developer found");
+
         //copy from collection to file
         try {
-            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
+            FileWriter fileWriter = new FileWriter(new File(PATH_TO_DEVELOPERS_LIST));
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            fileWriter.write("");
+            //fileWriter.write("");
             for (Map.Entry<Integer, Developer> entry : developerMap.entrySet()) {
-                bufferedWriter.write(entry.getKey() + "\t" + entry.getValue());
+                bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
             }
         }catch (Exception e){
             System.out.println("Cannot record file.");
             System.out.println(e);
         }
-        //clearing map after recording developers to file
+        System.out.println(developerMap);
+        //clearing collection after recording developers to file
         developerMap.clear();
     }
 
