@@ -5,7 +5,7 @@ import java.util.*;
 
 public class DeveloperDAO {
 
-     Map<Integer, Developer> developerMap = new HashMap<>();
+     Map<Integer, Developer> developerMap = new TreeMap<>();
 
     int number;
 
