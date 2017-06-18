@@ -6,13 +6,12 @@ import java.util.*;
 public class DeveloperDAO {
 
      Map<Integer, Developer> developerMap = new HashMap<>();
-     List<Developer> developerList = new ArrayList<>();
 
     int number;
-    String text;
+
     Scanner scanner = new Scanner(System.in);
 
-    public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Documents and Settings\\Manager\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
+    public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
 
     //method for inserting any integer
     public int checkInteger() {
@@ -33,8 +32,11 @@ public class DeveloperDAO {
         Developer developer = new Developer();
         FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
+        final String LINE_SEPARATOR = System.getProperty("line.separator");
+
         System.out.println("Enter ID");
         int id = checkInteger();
+        scanner.nextLine();
         developer.setId(id);
 
         System.out.println("Enter first Name: ");
@@ -59,9 +61,11 @@ public class DeveloperDAO {
 
         String newDeveloperToString = "";
 
-        newDeveloperToString += id+ ", " +firstName +", " +lastName +", " +specialty +", " +experience +", " +salary +"\n";
+        newDeveloperToString += id+ ", " +firstName +", " +lastName +", "
+                +specialty +", " +experience +", " +salary;
 
         fileWriter.write(newDeveloperToString);
+        fileWriter.write(LINE_SEPARATOR);
         fileWriter.close();
 
     }
@@ -104,18 +108,26 @@ public class DeveloperDAO {
 
         //copy from collection to file
         try {
-            FileWriter fileWriter = new FileWriter(new File(PATH_TO_DEVELOPERS_LIST));
+            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            //fileWriter.write("");
+            final String LINE_SEPARATOR = System.getProperty("line.separator");
+
             for (Map.Entry<Integer, Developer> entry : developerMap.entrySet()) {
-                bufferedWriter.write(entry.getKey() +"\t" +entry.getValue());
+
+                Object value = entry.getValue();
+                bufferedWriter.write(value.toString());
+                bufferedWriter.write(LINE_SEPARATOR);
+                bufferedWriter.flush();
+
+                //bufferedWriter.newLine();
             }
+
         }catch (Exception e){
             System.out.println("Cannot record file.");
             System.out.println(e);
         }
-        System.out.println(developerMap);
-        //clearing collection after recording developers to file
+
+        //clearing collection after writing developers to file
         developerMap.clear();
     }
 
@@ -134,6 +146,5 @@ public class DeveloperDAO {
             System.out.println("Can not read file.");
             System.out.println(e);
         }
-
     }
 }
