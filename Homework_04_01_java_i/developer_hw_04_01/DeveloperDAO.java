@@ -30,43 +30,48 @@ public class DeveloperDAO {
 
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
+        try {
+            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
 
-        final String LINE_SEPARATOR = System.getProperty("line.separator");
+            final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-        System.out.println("Enter ID");
-        int id = checkInteger();
-        scanner.nextLine();
-        developer.setId(id);
+            System.out.println("Enter ID");
+            int id = checkInteger();
+            scanner.nextLine();
+            developer.setId(id);
 
-        System.out.println("Enter first Name: ");
-        String firstName = scanner.nextLine();
-        developer.setFirstName(firstName);
+            System.out.println("Enter first Name: ");
+            String firstName = scanner.nextLine();
+            developer.setFirstName(firstName);
 
-        System.out.println("Enter last Name: ");
-        String lastName = scanner.nextLine();
-        developer.setLastName(lastName);
+            System.out.println("Enter last Name: ");
+            String lastName = scanner.nextLine();
+            developer.setLastName(lastName);
 
-        System.out.println("Enter specialty: ");
-        String specialty = scanner.nextLine();
-        developer.setSpecialty(specialty);
+            System.out.println("Enter specialty: ");
+            String specialty = scanner.nextLine();
+            developer.setSpecialty(specialty);
 
-        System.out.println("Enter experience: ");
-        int experience = checkInteger();
-        developer.setSpecialty(specialty);
+            System.out.println("Enter experience: ");
+            int experience = checkInteger();
+            developer.setSpecialty(specialty);
 
-        System.out.println("Enter salary:  ");
-        double salary = scanner.nextDouble();
-        developer.setSalary(salary);
+            System.out.println("Enter salary:  ");
+            double salary = scanner.nextDouble();
+            developer.setSalary(salary);
 
-        String newDeveloperToString = "";
+            String newDeveloperToString = "";
 
-        newDeveloperToString += id+ ", " +firstName +", " +lastName +", "
-                +specialty +", " +experience +", " +salary;
+            newDeveloperToString += id + ", " + firstName + ", " + lastName + ", "
+                    + specialty + ", " + experience + ", " + salary;
 
-        fileWriter.write(newDeveloperToString);
-        fileWriter.write(LINE_SEPARATOR);
-        fileWriter.close();
+            fileWriter.write(newDeveloperToString);
+            fileWriter.write(LINE_SEPARATOR);
+            fileWriter.close();
+        }catch (IOException e){
+            System.out.println("Can not create developer.");
+            e.printStackTrace();
+        }
 
     }
 //remove developer from file
