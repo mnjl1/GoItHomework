@@ -12,11 +12,7 @@ public class DeveloperDAO {
 
     Scanner scanner = new Scanner(System.in);
 
-    //public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
-    //public static final String PATH_TO_DEVELOPERS_LIST = "Developers.txt";
     File devFile = new File(System.getProperty("user.dir") +"\\Developers.txt");
-
-
 
     //method for inserting any integer
     public int checkInteger() {
@@ -127,8 +123,6 @@ public class DeveloperDAO {
                 bufferedWriter.write(value.toString());
                 bufferedWriter.write(LINE_SEPARATOR);
                 bufferedWriter.flush();
-
-                //bufferedWriter.newLine();
             }
 
         }catch (Exception e){
