@@ -13,7 +13,7 @@ public class DeveloperDAO {
     Scanner scanner = new Scanner(System.in);
 
     //public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
-    public static final String PATH_TO_DEVELOPERS_LIST = "Developers.txt";
+    //public static final String PATH_TO_DEVELOPERS_LIST = "Developers.txt";
     File devFile = new File("Developers.txt");
 
 
