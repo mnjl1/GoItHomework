@@ -34,8 +34,7 @@ public class DeveloperDAO {
 
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
-        try {
-            FileWriter fileWriter = new FileWriter(devFile, true);
+        try(FileWriter fileWriter = new FileWriter(devFile, true)) {
 
             final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -81,9 +80,9 @@ public class DeveloperDAO {
 //remove developer from file
     public void removeDeveloper() throws Exception {
         //copy developers from file to collection
-        try {
-            BufferedReader bufferedReader =
-                    new BufferedReader((new InputStreamReader(new FileInputStream(devFile))));
+        try(BufferedReader bufferedReader =
+                    new BufferedReader((new InputStreamReader(new FileInputStream(devFile))))) {
+
             String devLine;
             while ((devLine = bufferedReader.readLine()) != null) {
                 Developer developer = new Developer();
@@ -116,9 +115,9 @@ public class DeveloperDAO {
         else System.out.println("No developer found");
 
         //copy from collection to file
-        try {
-            FileWriter fileWriter = new FileWriter(devFile);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        try(FileWriter fileWriter = new FileWriter(devFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
             final String LINE_SEPARATOR = System.getProperty("line.separator");
 
             for (Map.Entry<Integer, Developer> entry : developerMap.entrySet()) {
@@ -142,9 +141,8 @@ public class DeveloperDAO {
 
     public void readDevelopersFile() throws Exception {
 
-        try {
-            FileReader fileReader = new FileReader(devFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+        try(FileReader fileReader = new FileReader(devFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
             String devLine;
             while ((devLine = bufferedReader.readLine()) != null) {
