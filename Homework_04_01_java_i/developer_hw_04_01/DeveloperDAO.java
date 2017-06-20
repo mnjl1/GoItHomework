@@ -5,13 +5,17 @@ import java.util.*;
 
 public class DeveloperDAO {
 
+
      Map<Integer, Developer> developerMap = new TreeMap<>();
 
     int number;
 
     Scanner scanner = new Scanner(System.in);
 
-    public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
+    //public static final String PATH_TO_DEVELOPERS_LIST = "C:\\Users\\Dmytro\\IdeaProjects\\GoItHomework\\Homework_04_01_java_i\\Developers.txt";
+    public static final String PATH_TO_DEVELOPERS_LIST = "Developers.txt";
+    File devFile = new File("Developers.txt");
+
 
     //method for inserting any integer
     public int checkInteger() {
@@ -31,7 +35,7 @@ public class DeveloperDAO {
     public void createNewDeveloper() throws IOException {
         Developer developer = new Developer();
         try {
-            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST, true);
+            FileWriter fileWriter = new FileWriter(devFile, true);
 
             final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -70,7 +74,7 @@ public class DeveloperDAO {
             fileWriter.close();
         }catch (IOException e){
             System.out.println("Can not create developer.");
-            e.printStackTrace();
+            System.out.println(e);
         }
 
     }
@@ -79,7 +83,7 @@ public class DeveloperDAO {
         //copy developers from file to collection
         try {
             BufferedReader bufferedReader =
-                    new BufferedReader((new InputStreamReader(new FileInputStream(PATH_TO_DEVELOPERS_LIST))));
+                    new BufferedReader((new InputStreamReader(new FileInputStream(devFile))));
             String devLine;
             while ((devLine = bufferedReader.readLine()) != null) {
                 Developer developer = new Developer();
@@ -113,7 +117,7 @@ public class DeveloperDAO {
 
         //copy from collection to file
         try {
-            FileWriter fileWriter = new FileWriter(PATH_TO_DEVELOPERS_LIST);
+            FileWriter fileWriter = new FileWriter(devFile);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             final String LINE_SEPARATOR = System.getProperty("line.separator");
 
@@ -139,7 +143,7 @@ public class DeveloperDAO {
     public void readDevelopersFile() throws Exception {
 
         try {
-            FileReader fileReader = new FileReader(PATH_TO_DEVELOPERS_LIST);
+            FileReader fileReader = new FileReader(devFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String devLine;
